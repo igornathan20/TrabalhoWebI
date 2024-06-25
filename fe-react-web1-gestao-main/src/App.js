@@ -1,14 +1,10 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes as Switch } from "react-router-dom";
+import { Home, Employees, Departments } from "./pages";
 import api from "./services/api";
-
 import "./css/global.css";
-import "./css/app.css";
-import "./css/sidebar.css";
-import "./css/main.css";
 
-import EmployeeForm from "./components/EmployeeForm";
-import EmployeeItem from "./components/EmployeeItem";
-import DepartmentForm from "./components/DepartmentForm";
+import { Navbar } from "./components";
 
 function App() {
   const [employeesList, setEmployeesList] = useState([]);
@@ -74,22 +70,34 @@ function App() {
   }
 
   return (
-    <div id="app">
-      <aside>
-      <strong>Cadastro de Departamento</strong>
-        <DepartmentForm onSubmit={handleAddDepartment} />
-        <strong>Cadastro de Funcionário</strong>
-        <EmployeeForm onSubmit={handleAddEmployee} initialData={editEmployee} departments={departments}/>
-      </aside>
+   
+    //   <aside>
+    //   <strong>Cadastro de Departamento</strong>
+    //     <DepartmentForm onSubmit={handleAddDepartment} />
+    //     <strong>Cadastro de Funcionário</strong>
+    //     <EmployeeForm onSubmit={handleAddEmployee} initialData={editEmployee} departments={departments}/>
+    //   </aside>
       
-      <main>
-        <ul>
-          {employeesList.map((employee) => (
-            <EmployeeItem key={employee.id} employee={employee} onEdit={handleEditEmployee} onDelete={deleteEmployee}/>
-          ))}
-        </ul>
-      </main>
-    </div>
+    //   <main>
+    //     <ul>
+    //       {employeesList.map((employee) => (
+    //         <EmployeeItem key={employee.id} employee={employee} onEdit={handleEditEmployee} onDelete={deleteEmployee}/>
+    //       ))}
+    //     </ul>
+    //   </main>
+    // 
+    <div id="app">
+
+        <Router>
+          <Navbar />
+            <Switch>
+              <Route exact path="/"  Component={Home}/>
+              <Route path="/departments"  Component={Departments}/>
+              <Route path="/employees" Component={Employees} />
+             </Switch>
+        </Router>
+      </div>
+    
   );
 }
 

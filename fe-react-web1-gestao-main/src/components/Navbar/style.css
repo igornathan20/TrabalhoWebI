@@ -1,0 +1,55 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: white;
+  border-bottom: 1px solid #ddd;
+  height: 80px;
+}
+
+.logo {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li {
+  margin: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: black;
+  font-weight: normal;
+  position: relative;
+  transition: 0.5s;
+}
+
+.nav-links a:hover {
+  color: purple;
+}
+
+.nav-links a.active {
+  color: purple;
+}
+
+.nav-links a.active::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: purple;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+
+
+
+

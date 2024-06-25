@@ -1,8 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import './style.css';
 
-export default function DepartmentForm({ onSubmit }) {
+function DepartmentForm({ onSubmit, onCancel, initialData }) {
   const [departmentName, setDepartmentName] = useState("");
   const [departmentDescription, setDepartmentDescription] = useState("");
+
+  const isFormValid = departmentName && departmentDescription;
+
+  useEffect(() => {
+    if (initialData) {
+      setDepartmentName(initialData.name);
+      setDepartmentDescription(initialData.description);
+    }
+  }, [initialData]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -15,7 +25,8 @@ export default function DepartmentForm({ onSubmit }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="department-form" onSubmit={handleSubmit}>
+      <h2>Adicionar Departamento</h2>
       <div className="input-block">
         <label htmlFor="department_name">Nome do Departamento</label>
         <input
@@ -24,6 +35,7 @@ export default function DepartmentForm({ onSubmit }) {
           id="department_name"
           value={departmentName}
           onChange={(e) => setDepartmentName(e.target.value)}
+          required
         />
       </div>
 
@@ -35,9 +47,15 @@ export default function DepartmentForm({ onSubmit }) {
           id="department_description"
           value={departmentDescription}
           onChange={(e) => setDepartmentDescription(e.target.value)}
+          required
         />
       </div>
-      <button type="submit">SALVAR</button>
+      <div className="form-actions">
+        <button type="button" className="cancel-button" onClick={onCancel}>Cancelar</button>
+        <button type="submit" className="confirm-button" disabled={!isFormValid}>Adicionar</button>
+      </div>
     </form>
   );
 }
+
+export default DepartmentForm;

@@ -1,14 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
+import './style.css';
 
-export default function EmployeeForm({ onSubmit, initialData, departments }) {
-  const [employeeName, setEmployeeName] = useState("");
-  const [employeeEmail, setEmployeeEmail] = useState("");
-  const [employeePosition, setEmployeePosition] = useState("");
-  const [employeeSalary, setEmployeeSalary] = useState("");
+function EmployeeForm({ onSubmit, onCancel, initialData, departments }) {
+  const [employeeName, setEmployeeName] = useState('');
+  const [employeeEmail, setEmployeeEmail] = useState('');
+  const [employeePosition, setEmployeePosition] = useState('');
+  const [employeeSalary, setEmployeeSalary] = useState('');
   const [employeeTransport, setEmployeeTransport] = useState(false);
-  const [departmentId, setDepartmentId] = useState("");
+  const [departmentId, setDepartmentId] = useState('');
 
-  const isFormValid = departmentId;
+  const isFormValid = employeeName && employeeEmail && employeePosition && employeeSalary && departmentId;
 
   useEffect(() => {
     if (initialData) {
@@ -33,16 +34,17 @@ export default function EmployeeForm({ onSubmit, initialData, departments }) {
       department_id: departmentId,
     });
 
-    setEmployeeName("");
-    setEmployeeEmail("");
-    setEmployeePosition("");
-    setEmployeeSalary("");
+    setEmployeeName('');
+    setEmployeeEmail('');
+    setEmployeePosition('');
+    setEmployeeSalary('');
     setEmployeeTransport(false);
-    setDepartmentId("");
+    setDepartmentId('');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="employee-form" onSubmit={handleSubmit}>
+      <h2>Adicionar Funcionário</h2>
       <div className="input-block">
         <label htmlFor="employee_name">Nome completo</label>
         <input
@@ -51,6 +53,7 @@ export default function EmployeeForm({ onSubmit, initialData, departments }) {
           id="employee_name"
           value={employeeName}
           onChange={(e) => setEmployeeName(e.target.value)}
+          required
         />
       </div>
 
@@ -62,6 +65,7 @@ export default function EmployeeForm({ onSubmit, initialData, departments }) {
           id="employee_email"
           value={employeeEmail}
           onChange={(e) => setEmployeeEmail(e.target.value)}
+          required
         />
       </div>
 
@@ -73,6 +77,7 @@ export default function EmployeeForm({ onSubmit, initialData, departments }) {
           id="employee_position"
           value={employeePosition}
           onChange={(e) => setEmployeePosition(e.target.value)}
+          required
         />
       </div>
 
@@ -84,6 +89,7 @@ export default function EmployeeForm({ onSubmit, initialData, departments }) {
           id="employee_salary"
           value={employeeSalary}
           onChange={(e) => setEmployeeSalary(e.target.value)}
+          required
         />
       </div>
 
@@ -110,6 +116,7 @@ export default function EmployeeForm({ onSubmit, initialData, departments }) {
           onChange={(e) => setDepartmentId(e.target.value)}
           name="employee_department"
           id="employee_department"
+          required
         >
           <option value="">Selecione o Departamento</option>
           {departments.map((department) => (
@@ -120,9 +127,12 @@ export default function EmployeeForm({ onSubmit, initialData, departments }) {
         </select>
       </div>
 
-      <button disabled={!isFormValid} type="submit">
-        SALVAR
-      </button>
+      <div className="form-actions">
+        <button type="button" className="cancel-button" onClick={onCancel}>Cancelar</button>
+        <button type="submit" className="confirm-button" disabled={!isFormValid}>Adicionar</button>
+      </div>
     </form>
   );
 }
+
+export default EmployeeForm;

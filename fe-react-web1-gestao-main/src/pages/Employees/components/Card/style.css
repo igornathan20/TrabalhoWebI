@@ -1,0 +1,77 @@
+.card-employee {
+  background-color: white;
+  border-radius: 25px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 280px;
+  height: 450px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.employee-details {
+  flex: 1;
+  text-align: center;
+}
+
+.employee-details h3 {
+  margin: 0 0 32px;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.employee-details p {
+  margin: 16px 0;
+}
+
+.employee-image {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  margin-left: 20px;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.edit-button,
+.delete-button {
+  padding: 10px 20px;
+  margin: 0 4px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.edit-button {
+  border: 1px solid #6200ea;
+  color: #6200ea;
+}
+
+.edit-button:hover {
+  background-color: #3700b3;
+  color: white
+}
+
+.delete-button {
+  border: 1px solid #e53935;
+  color: #e53935;
+}
+
+.delete-button:hover {
+  background-color: #b71c1c;
+  color: white
+}

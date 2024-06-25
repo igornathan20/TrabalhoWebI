@@ -1,0 +1,10 @@
+.show-home {
+  display: flex;
+  gap: 20px;
+  height: 80vh;
+  width: 100%;
+  padding: 20px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+}

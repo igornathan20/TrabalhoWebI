@@ -112,7 +112,6 @@ class EmployeeController {
 
     await EmployeeRepository.delete(id);
 
-    // 204: No Content
     response.sendStatus(204);
   }
 }
