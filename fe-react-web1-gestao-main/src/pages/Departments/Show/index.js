@@ -39,11 +39,21 @@ function Show() {
       setDepartments(departments.filter((dep) => dep.id !== id));
       toast.success("Departamento deletado com sucesso!");
     } catch (error) {
-      console.log("Erro ao deletar o departamento", error);
-      toast.error("Erro ao deletar o departamento.");
+      
+      if (error.response && error.response.data && error.response.data.error) {
+        const errorMessage = error.response.data.error;
+        if (errorMessage.includes("Não pode ser excluído pois existem funcionários cadastrados no departamento")) {
+          toast.error("Não pode ser excluído pois existem funcionários cadastrados no departamento.");
+        } else {
+          toast.error("Erro ao deletar o departamento.");
+        }
+      } else {
+        toast.error("Erro ao deletar o departamento.");
+      }
     }
     setIsDeleteModalOpen(false);
   };
+  
 
   const handleCreate = async (data) => {
     if (editDepartment !== null) {

@@ -3,7 +3,6 @@ const DepartmentRepository = require("../repositories/Department");
 class DepartmentController {
   async index(request, response) {
     const department = await DepartmentRepository.findAll();
-
     response.json(department);
   }
 
@@ -15,7 +14,6 @@ class DepartmentController {
     }
 
     const department = await DepartmentRepository.create({ name, description });
-
     response.status(201).json(department);
   }
 
@@ -24,29 +22,27 @@ class DepartmentController {
     const { name, description } = request.body;
 
     if (!name) {
-      return response.status(400).json({ error: "Name is required" });
+      return response.status(400).json({ error: "Nome é obrigatório" });
     }
 
-    const updateDepartment = await DepartmentRepository.update(id, {
-      name,
-      description,
-    });
-
+    const updateDepartment = await DepartmentRepository.update(id, { name, description });
     response.status(200).json(updateDepartment);
   }
-
 
   async delete(request, response) {
     const { id } = request.params;
 
     try {
       await DepartmentRepository.delete(id);
-      response.status(204).send();
+      response.status(204).send(); // No Content
     } catch (error) {
-      response.status(500).json({ error: "Erro ao deletar departamento" });
+      if (error.code === 'ER_ROW_IS_REFERENCED_2' || error.errno === 1451) {
+        response.status(400).json({ error: "Não pode ser excluído pois existem funcionários cadastrados no departamento." });
+      } else {
+        response.status(500).json({ error: "Erro ao deletar departamento" });
+      }
     }
   }
-
 }
 
 module.exports = new DepartmentController();
