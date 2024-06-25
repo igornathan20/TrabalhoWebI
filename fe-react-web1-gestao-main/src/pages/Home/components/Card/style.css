@@ -1,0 +1,40 @@
+.card-home {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+  box-shadow: 0 8px 8px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  width: 300px;
+  height: 450px;
+  position: relative;
+}
+
+.card-home h3 {
+  margin: 0 0 10px;
+  font-size: 1.5em;
+}
+
+.card-home p {
+  margin-bottom: 150px;
+  font-size: 5rem;
+  font-weight: bold;
+}
+
+.view-button {
+  background-color: #6200ea;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.view-button:hover {
+  background-color: #3700b3;
+}

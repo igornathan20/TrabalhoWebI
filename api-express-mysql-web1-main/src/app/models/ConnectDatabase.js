@@ -4,7 +4,7 @@ const client = mysql.createPool({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "admin",
+  password: "rootgo44",
   database: "web1rep_2024",
 });
 

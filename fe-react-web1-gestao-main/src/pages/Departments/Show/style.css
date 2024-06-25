@@ -1,0 +1,89 @@
+.show-departments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.custom-modal-content {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  background-color: white;
+}
+
+.add-department-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #fff;
+  border: 2px solid #6200ea;
+  color: #6200ea;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 1s, border-radius 1s;
+}
+
+.add-department-button:hover {
+  background-color: #6200ea;
+  color: #fff;
+  border-radius: 25px;
+}
+
+.department-confirmation {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+}
+
+.department-confirmation h2, 
+.department-confirmation span {
+  margin: 40px 0;
+}
+
+.department-confirmation span {
+  font-size: 1.5em;
+
+}
+
+.form-actions button{
+  padding: 10px 20px;
+  margin: 0 4px;
+  border-radius: 25px;
+  cursor: pointer;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  width: 200px;
+}
+
+.cancel-button {
+  border: 1px solid #a10000;
+  color: #a10000;
+}
+
+.cancel-button:hover {
+  background-color: #a10000;
+  color: #fff;
+}
+
+.confirm-button {
+  border: 1px solid #00a832;
+  color: #00a832;
+}
+
+.confirm-button:hover {
+  background-color: #00a832;
+  color: #fff;
+}
+
+

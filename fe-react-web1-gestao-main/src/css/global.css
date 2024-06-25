@@ -12,10 +12,6 @@ body,
   height: 100%;
 }
 
-body {
-  background: #e5e6f0;
-  -webkit-font-smoothing: antialiased;
-}
 body,
 input,
 button {

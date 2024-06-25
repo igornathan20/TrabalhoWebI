@@ -34,6 +34,19 @@ class DepartmentController {
 
     response.status(200).json(updateDepartment);
   }
+
+
+  async delete(request, response) {
+    const { id } = request.params;
+
+    try {
+      await DepartmentRepository.delete(id);
+      response.status(204).send();
+    } catch (error) {
+      response.status(500).json({ error: "Erro ao deletar departamento" });
+    }
+  }
+
 }
 
 module.exports = new DepartmentController();
