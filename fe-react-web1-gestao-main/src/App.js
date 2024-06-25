@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes as Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes as Switch,
+} from "react-router-dom";
 import { Home, Employees, Departments } from "./pages";
 import api from "./services/api";
 import "./css/global.css";
@@ -11,7 +15,7 @@ function App() {
   const [employees, setEmployees] = useState([]);
   const [editEmployee, setEditEmployee] = useState(null);
   const [departments, setDepartments] = useState([]);
-  
+
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
@@ -37,9 +41,11 @@ function App() {
   }, []);
 
   async function handleAddEmployee(data) {
-    if (editEmployee !== null) {          
+    if (editEmployee !== null) {
       await api.put(`/employees/${editEmployee.id}`, data);
-      setEmployees(employees.map(emp => (emp.id === editEmployee.id ? data : emp)));
+      setEmployees(
+        employees.map((emp) => (emp.id === editEmployee.id ? data : emp))
+      );
       setEditEmployee(null);
     } else {
       const response = await api.post("/employees", data);
@@ -54,7 +60,7 @@ function App() {
   async function deleteEmployee(employee) {
     try {
       await api.delete(`/employees/${employee.id}`);
-      setEmployeesList(employeesList.filter(emp => emp.id !== employee.id));
+      setEmployeesList(employeesList.filter((emp) => emp.id !== employee.id));
     } catch (error) {
       console.log("Erro ao deletar funcionário", error);
     }
@@ -70,34 +76,16 @@ function App() {
   }
 
   return (
-   
-    //   <aside>
-    //   <strong>Cadastro de Departamento</strong>
-    //     <DepartmentForm onSubmit={handleAddDepartment} />
-    //     <strong>Cadastro de Funcionário</strong>
-    //     <EmployeeForm onSubmit={handleAddEmployee} initialData={editEmployee} departments={departments}/>
-    //   </aside>
-      
-    //   <main>
-    //     <ul>
-    //       {employeesList.map((employee) => (
-    //         <EmployeeItem key={employee.id} employee={employee} onEdit={handleEditEmployee} onDelete={deleteEmployee}/>
-    //       ))}
-    //     </ul>
-    //   </main>
-    // 
     <div id="app">
-
-        <Router>
-          <Navbar />
-            <Switch>
-              <Route exact path="/"  Component={Home}/>
-              <Route path="/departments"  Component={Departments}/>
-              <Route path="/employees" Component={Employees} />
-             </Switch>
-        </Router>
-      </div>
-    
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route exact path="/" Component={Home} />
+          <Route path="/departments" Component={Departments} />
+          <Route path="/employees" Component={Employees} />
+        </Switch>
+      </Router>
+    </div>
   );
 }
 
